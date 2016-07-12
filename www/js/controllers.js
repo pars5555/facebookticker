@@ -55,7 +55,7 @@ angular.module('starter.controllers', [])
                             $scope.printheader =header ;
                     })
                     .error(function (error) {
-                            $scope.printdata =error ;
+                            $scope.printdata ="error" ;
 
 
                     });
