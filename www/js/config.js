@@ -1,8 +1,8 @@
 var conf = {
     server: {
-        apiHost: "http://api.facebookticker.am",
+        apiHost: "https://www.arca.am",
         actionsPath: {
-            login: "/login"
+            login: "/services/login.php"
         }
     }
 };

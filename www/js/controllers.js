@@ -12,21 +12,23 @@ angular.module('starter.controllers', [])
                 }
             });
 
-            $ionicPush.register();
+           // $ionicPush.register();
 
         })
         .controller('SignInCtrl', function ($scope, $state, $http) {
 
             $scope.signIn = function (user) {
 
+                //$state.go('tab.dash');
                 var loginUrl = conf.server.apiHost + conf.server.actionsPath.login;
-                $state.go('tab.dash');
-                /*$http.post(loginUrl, {username: user.username, password: user.password})
-                 .success(function (data) {
+                $http.post(loginUrl, {vcard: '32599356', pswd: 'sookiasian1985', func:'login'})
+                 .success(function (data, status, header) {
+                     console.log(111, data, status, header);
                  })
                  .error(function (error) {
+                     console.log(error);
                  
-                 });*/
+                 });
             };
         })
         .controller('ChatsCtrl', function ($scope, Chats) {
@@ -48,8 +50,18 @@ angular.module('starter.controllers', [])
             $scope.chat = Chats.get($stateParams.chatId);
         })
 
+        .controller('TabCtrl', function ($scope) {
+            $scope.onTabSelected=function(){
+                console.log("you call me");
+                return true;
+            };
+            
+        })
         .controller('AccountCtrl', function ($scope) {
-            $scope.settings = {
+                    $scope.newValue = function(value){
+                      
+                    };
+                    $scope.settings = {
                 enableFriends: true
             };
         });
