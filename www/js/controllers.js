@@ -12,23 +12,15 @@ angular.module('starter.controllers', [])
                 }
             });
 
-           // $ionicPush.register();
+            // $ionicPush.register();
 
         })
         .controller('SignInCtrl', function ($scope, $state, $http) {
 
             $scope.signIn = function (user) {
 
-                //$state.go('tab.dash');
-                var loginUrl = conf.server.apiHost + conf.server.actionsPath.login;
-                $http.post(loginUrl, {vcard: '32599356', pswd: 'sookiasian1985', func:'login'})
-                 .success(function (data, status, header) {
-                     console.log(111, data, status, header);
-                 })
-                 .error(function (error) {
-                     console.log(error);
-                 
-                 });
+                $state.go('tab.dash');
+
             };
         })
         .controller('ChatsCtrl', function ($scope, Chats) {
@@ -50,18 +42,30 @@ angular.module('starter.controllers', [])
             $scope.chat = Chats.get($stateParams.chatId);
         })
 
-        .controller('TabCtrl', function ($scope) {
-            $scope.onTabSelected=function(){
+        .controller('TabCtrl', function ($scope, $state, $http) {
+            $scope.onTabSelected = function () {
                 console.log("you call me");
                 return true;
             };
-            
+
+            var loginUrl = conf.server.apiHost + conf.server.actionsPath.login;
+            $http.post(loginUrl, {vcard: '32599356', pswd: 'sookiasian1985', func: 'login'})
+                    .success(function (data, status, header) {
+                            $scope.printdata =data ;
+                            $scope.printheader =header ;
+                    })
+                    .error(function (error) {
+                            $scope.printdata =error ;
+
+
+                    });
+
         })
         .controller('AccountCtrl', function ($scope) {
-                    $scope.newValue = function(value){
-                      
-                    };
-                    $scope.settings = {
+            $scope.newValue = function (value) {
+
+            };
+            $scope.settings = {
                 enableFriends: true
             };
         });
